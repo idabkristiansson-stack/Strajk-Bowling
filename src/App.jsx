@@ -15,8 +15,10 @@ function App() {
 <br />
 <Username />
 <Favorites />
-    </>
-  )
+<br/>
+ </>
+
+)
 }
 
 export default App
