@@ -1,6 +1,7 @@
 function Error() {
     return (
-        <h1>This is not the page you are looking for</h1>
+        <h1>This is not the page you are looking for</h1>,
+        <NavLink to="/">Go Home</NavLink>
     )
 }
 

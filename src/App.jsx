@@ -3,6 +3,7 @@ import Favorites from './components/Favorites'
 import InfoBox from './components/infoBox'
 import LikeButton from './components/LikeButton'
 import Username from './components/Username'
+import Layout from './components/Layout'
 
 function App() {
 
