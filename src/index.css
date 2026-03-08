@@ -4,8 +4,8 @@
   font-weight: 400;
 
   color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
+  color: #252220;
+  background-color: #f9f6f3;
 
   font-synthesis: none;
   text-rendering: optimizeLegibility;
@@ -13,3 +13,40 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
+  h1 {
+    color: #E24122;
+}
+
+h2 {
+    color: #E24122;
+}
+
+h3 {
+    color: #E24122;
+}
+
+h4 {
+    font: Bebas Neue, regular;
+    color: #38312D;
+    size: 24px;
+    letter-spacing: 0.3px;
+}
+
+button {
+  background-color: #E24122;
+  color: white;
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: 4px;
+  cursor: pointer;
+  font: Work Sans, bold;
+  text-transform: uppercase;
+}
+
+input, select {
+  padding: 0.5rem;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  background-color: transparent;
+  font: Work Sans, regular;
+}

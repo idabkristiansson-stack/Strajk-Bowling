@@ -1,7 +1,11 @@
+import { Link } from 'react-router-dom';
+
 function Error() {
     return (
-        <h1>This is not the page you are looking for</h1>,
-        <NavLink to="/">Go Home</NavLink>
+        <section>
+            <h1>404 - Page Not Found</h1>
+            <Link to="/">Go back to Home page</Link>
+        </section>
     )
 }
 

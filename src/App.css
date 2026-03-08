@@ -4,3 +4,80 @@
   text-align: center;
 }
 
+.hamburger {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  width: 2rem;
+  height: 2rem;
+  background: #e9b2a8;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  z-index: 50; /* Ser till att knappen alltid ligger överst */
+  position: absolute;
+  top: 1rem;
+  left: 1rem; /* Placerar den uppe till vänster enligt Figma-skissen */
+}
+
+/* De tre strecken */
+.hamburger .line {
+  width: 2rem;
+  height: 0.25rem;
+  background: #E24122; 
+  border-radius: 10px;
+  transition: all 0.3s linear;
+  position: relative;
+  transform-origin: 1px;
+}
+
+/* Animationer när menyn är öppen (.open) */
+.hamburger.open .line:nth-child(1) {
+  transform: rotate(45deg);
+}
+
+.hamburger.open .line:nth-child(2) {
+  opacity: 0; /* Gömmer mittenstrecket */
+  transform: translateX(20px);
+}
+
+.hamburger.open .line:nth-child(3) {
+  transform: rotate(-45deg);
+}
+
+
+/* Overlay som täcker hela viewporten */
+.loading-overlay {
+  position: fixed;
+  inset: 0; /* top/right/bottom/left: 0 */
+  background: rgba(0, 0, 0, 0.55);
+  backdrop-filter: blur(2px);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999; /* högt värde så den ligger över allt */
+  color: #fff;
+}
+
+/* Spinner (CSS-only) */
+.spinner {
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  border: 4px solid rgba(255, 255, 255, 0.35);
+  border-top-color: #fff;
+  animation: spin 0.9s linear infinite;
+  margin-bottom: 12px;
+}
+
+.loading-text {
+  font-size: 16px;
+  letter-spacing: 0.3px;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
