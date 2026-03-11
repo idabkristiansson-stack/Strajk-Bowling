@@ -8,7 +8,6 @@
   text-align: center;
 }
 
-/* Själva knappen (klickytan) */
 .hamburger {
   position: absolute;
   top: 1.5rem;
@@ -17,17 +16,16 @@
   height: 46px;
   display: flex;
   flex-direction: column;
-  justify-content: center; /* Centrerar linjerna vertikalt inuti knappen */
-  align-items: flex-start; /* Vänsterjusterar linjerna. Ändra till 'flex-end' om de ska vara högerjusterade! */
-  padding-left: 12px; /* Centrerar hela linjegruppen horisontellt (52 - 28 = 24, hälften är 12) */
-  gap: 6px; /* Avståndet mellan linjerna. Ändra detta om de ska sitta tätare/glesare */
+  justify-content: center;
+  align-items: flex-start;
+  padding-left: 12px;
+  gap: 6px; 
   background: rgba(226, 65, 34, 0.12);
   border: none;
   cursor: pointer;
   z-index: 50;
 }
 
-/* Gemensam stil för alla tre linjer (höjd och rundning) */
 .hamburger .line {
   height: 2px;
   border-radius: 2px;
@@ -50,22 +48,20 @@
   width: 15px;
 }
 
-/* Den stora bakgrunden som täcker hela skärmen */
 .menu-overlay {
   position: fixed;
   top: 0;
   left: 0;
   width: 100vw;
   height: 100vh;
-  background-color: #222222; /* Ändra till #E24122 om prototypen har en röd/rosa menybakgrund! */
+  background-color: #222222;
   display: flex;
   flex-direction: column;
-  justify-content: center; /* Centrerar länkarna vertikalt */
-  align-items: center;     /* Centrerar länkarna horisontellt */
-  z-index: 40; /* Ligger under hamburgarknappen, men över resten av appen */
+  justify-content: center; 
+  align-items: center;  
+  z-index: 40; 
 }
 
-/* Tar bort standard-utfyllnad för listan */
 .menu-links {
   list-style: none;
   padding: 0;
@@ -73,45 +69,36 @@
   text-align: center;
 }
 
-/* Stort mellanrum mellan valen */
-.menu-links li {
-  margin: 1.5rem 0;
-}
-
-/* Styling för länk-knapparna */
 .menu-links button {
   background: none;
   border: none;
-  color: #E24122; /* Ljus text */
-  font-size: 2.5rem; /* Riktigt stor text, precis som i Figma! */
-  font-weight: 800; /* Extra fet text */
+  color: #E24122;
+  font-size: 2.5rem; 
+  font-weight: 800; 
   text-transform: uppercase;
   letter-spacing: 2px;
   cursor: pointer;
   transition: color 0.2s ease, transform 0.2s ease;
 }
 
-/* Hover-effekt på länkarna */
 .menu-links button:hover {
-  color: #fff; /* Blir din accentfärg när man hovrar */
-  transform: scale(1.1); /* Blir lite större när man håller över */
+  color: #fff; 
+  transform: scale(1.1);
 }
 
-/* Overlay som täcker hela viewporten */
 .loading-overlay {
   position: fixed;
-  inset: 0; /* top/right/bottom/left: 0 */
+  inset: 0; 
   background: rgba(0, 0, 0, 0.55);
   backdrop-filter: blur(2px);
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  z-index: 9999; /* högt värde så den ligger över allt */
+  z-index: 9999; 
   color: #fff;
 }
 
-/* Spinner (CSS-only) */
 .spinner {
   width: 56px;
   height: 56px;
@@ -139,19 +126,17 @@ h4 {
   justify-content: center;
   text-align: center;
   font-size: 1.2rem;
-  letter-spacing: 2px; /* Ger lite snyggt mellanrum mellan bokstäverna */
+  letter-spacing: 2px; 
   margin: 2rem 0 1.5rem 0;
 }
 
-/* Skapar linjerna före och efter texten */
 h4::before,
 h4::after {
   content: "";
-  flex: 1; /* Säger åt linjerna att ta upp all ledig plats på sidorna */
-  border-bottom: 2px solid #38312D; /* Ändra till din specifika accentfärg från Figma om du inte använder denna rosa */
+  flex: 1; 
+  border-bottom: 2px solid #38312D; 
 }
 
-/* Ger lite luft mellan linjerna och själva texten */
 h4::before {
   margin-right: 1rem;
 }
@@ -160,14 +145,12 @@ h4::after {
   margin-left: 1rem;
 }
 
-/* Behållaren behöver vara relative så vi kan placera labeln inuti */
 .input-group {
   position: relative;
   margin-bottom: 1.5rem;
   width: 100%;
 }
 
-/* Själva input-fältet */
 .input-group input {
   width: 100%;
   padding: 1rem;
@@ -179,34 +162,26 @@ h4::after {
   transition: border-color 0.2s;
 }
 
-/* Labeln i sitt startläge (mitt i rutan) */
 .input-group label {
   position: absolute;
   left: 1rem;
-  top: 1rem; /* Centrerar vertikalt i fältet */
+  top: 1rem; 
   color: #38312D;
-  pointer-events: none; /* Viktigt! Gör att man klickar *igenom* texten ner på inputfältet */
+  pointer-events: none; 
   transition: all 0.2s ease;
   padding: 0 0.4rem;
-  
-  /* Byt ut #222 mot den exakta bakgrundsfärgen du har i appen! */
-  background-color: #f9f9f3; /* Sätter en bakgrundsfärg som matchar appens bakgrund så att den "skär ut" texten från ramen */
+  background-color: #f9f9f3;
 }
 
-/* * MAGIN Sker HÄR: 
- * När input har fokus, ELLER när den har ett värde (placeholder döljs), 
- * ELLER när fältet är godkänt (valid).
- */
 .input-group input:focus ~ label,
 .input-group input:not(:placeholder-shown) ~ label,
 .input-group input:valid ~ label {
-  top: -0.6rem;         /* Flyttar upp etiketten på ramen */
-  left: 0.8rem;         /* Justerar i sidled */
-  font-size: 0.8rem;    /* Gör texten lite mindre */
-  color: #38312D;       /* Sätter din rosa accentfärg */
+  top: -0.6rem;        
+  left: 0.8rem;        
+  font-size: 0.8rem;    
+  color: #38312D;      
 }
 
-/* Ändra ramens färg när rutan är i fokus */
 .input-group input:focus {
   border-color: #E24122;
 }
@@ -215,10 +190,9 @@ h4::after {
   color: #E24122;
 }
 
-/* Behållaren för raden */
 .input-row {
   display: flex;
-  gap: 1rem; /* Detta är kommandot som skapar mellanrummet! (ca 16px) */
+  gap: 1rem; 
   width: 100%;
 }
 
