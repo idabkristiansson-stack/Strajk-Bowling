@@ -9,32 +9,60 @@ export default function Success({ details }) {
       <img src="src/assets/logo.seeYouSoon!.png" alt="See you soon!" />
       
       <div className="receipt">
-        <h2>Booking details</h2>
-        <div className="receipt-item">
-          <span>When: </span>
-          <span>{details.when ? details.when.replace('T', ' ') : 'Unknown date and time'}</span>
+        <h4>BOOKING DETAILS</h4>
+      {/* WHEN */}
+        <div className="input-group">
+          <input 
+            type="text" 
+            readOnly 
+            placeholder=" " 
+            value={details.when ? details.when.replace('T', ' ') : 'Unknown date and time'} 
+          />
+          <label>When</label>
         </div>
-        <div className="receipt-item">
-          <span>Who: </span>
-          <span>{details.players} pers</span>
+
+        {/* WHO */}
+        <div className="input-group">
+          <input 
+            type="text" 
+            readOnly 
+            placeholder=" " 
+            value={`${details.people} pers`} 
+          />
+          <label>Who</label>
         </div>
-        <div className="receipt-item">
-          <span>Lanes: </span>
-          <span>{details.lanes} lane/lanes</span>
+
+        {/* LANES */}
+        <div className="input-group">
+          <input 
+            type="text" 
+            readOnly 
+            placeholder=" " 
+            value={`${details.lanes} lane${details.lanes > 1 ? 's' : ''}`} 
+          />
+          <label>Lanes</label>
         </div>
-        <div className="receipt-item">
-          <span>Booking number: </span>
-          <span>{details.id || 'STR812744'}</span>
+
+        {/* BOOKING NUMBER */}
+        <div className="input-group">
+          <input 
+            type="text" 
+            readOnly 
+            placeholder=" " 
+            value={details.id || 'STR812744'} 
+          />
+          <label>Booking number</label>
+        </div>
+        
+ {/* TOTAL PRICE (Specialdesignad box istället för input) */}
+        <div className="total-box">
+          <span className="total-label">Total</span>
+          <span className="total-amount">{details.totalPrice} SEK</span>
         </div>
       </div>
 
-      <div className="total-price">
-        <span>Total price: </span>
-        <span>{details.totalPrice} SEK</span>
-      </div>
-
-      <button className="back-btn" onClick={() => window.location.reload()}>
-        SWEET, LET´S GO!
+      <button className="strike-btn" onClick={() => window.location.reload()}>
+        SWEET, LET'S GO!
       </button>
     </section>
   );

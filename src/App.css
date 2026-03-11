@@ -1,50 +1,101 @@
+* {
+  box-sizing: border-box;
+}
+
 #root {
   margin: 0 auto;
   padding: 2rem;
   text-align: center;
 }
 
+/* Själva knappen (klickytan) */
 .hamburger {
+  position: absolute;
+  top: 1.5rem;
+  left: 1.5rem;
+  width: 52px;
+  height: 46px;
   display: flex;
   flex-direction: column;
-  justify-content: space-around;
-  width: 2rem;
-  height: 2rem;
-  background: #e9b2a8;
+  justify-content: center; /* Centrerar linjerna vertikalt inuti knappen */
+  align-items: flex-start; /* Vänsterjusterar linjerna. Ändra till 'flex-end' om de ska vara högerjusterade! */
+  padding-left: 12px; /* Centrerar hela linjegruppen horisontellt (52 - 28 = 24, hälften är 12) */
+  gap: 6px; /* Avståndet mellan linjerna. Ändra detta om de ska sitta tätare/glesare */
+  background: rgba(226, 65, 34, 0.12);
   border: none;
   cursor: pointer;
-  padding: 0;
-  z-index: 50; /* Ser till att knappen alltid ligger överst */
-  position: absolute;
-  top: 1rem;
-  left: 1rem; /* Placerar den uppe till vänster enligt Figma-skissen */
+  z-index: 50;
 }
 
-/* De tre strecken */
+/* Gemensam stil för alla tre linjer (höjd och rundning) */
 .hamburger .line {
-  width: 2rem;
-  height: 0.25rem;
-  background: #E24122; 
-  border-radius: 10px;
-  transition: all 0.3s linear;
-  position: relative;
-  transform-origin: 1px;
+  height: 2px;
+  border-radius: 2px;
+  background-color: #E24122;
+  transition: all 0.3s ease;
 }
 
-/* Animationer när menyn är öppen (.open) */
-.hamburger.open .line:nth-child(1) {
-  transform: rotate(45deg);
+/* 1. Översta linjen */
+.hamburger .line:nth-child(1) {
+  width: 28px;
 }
 
-.hamburger.open .line:nth-child(2) {
-  opacity: 0; /* Gömmer mittenstrecket */
-  transform: translateX(20px);
+/* 2. Mellersta linjen */
+.hamburger .line:nth-child(2) {
+  width: 22px;
 }
 
-.hamburger.open .line:nth-child(3) {
-  transform: rotate(-45deg);
+/* 3. Nedersta linjen */
+.hamburger .line:nth-child(3) {
+  width: 15px;
 }
 
+/* Den stora bakgrunden som täcker hela skärmen */
+.menu-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: #222222; /* Ändra till #E24122 om prototypen har en röd/rosa menybakgrund! */
+  display: flex;
+  flex-direction: column;
+  justify-content: center; /* Centrerar länkarna vertikalt */
+  align-items: center;     /* Centrerar länkarna horisontellt */
+  z-index: 40; /* Ligger under hamburgarknappen, men över resten av appen */
+}
+
+/* Tar bort standard-utfyllnad för listan */
+.menu-links {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  text-align: center;
+}
+
+/* Stort mellanrum mellan valen */
+.menu-links li {
+  margin: 1.5rem 0;
+}
+
+/* Styling för länk-knapparna */
+.menu-links button {
+  background: none;
+  border: none;
+  color: #E24122; /* Ljus text */
+  font-size: 2.5rem; /* Riktigt stor text, precis som i Figma! */
+  font-weight: 800; /* Extra fet text */
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  cursor: pointer;
+  transition: color 0.2s ease, transform 0.2s ease;
+}
+
+/* Hover-effekt på länkarna */
+.menu-links button:hover {
+  color: #fff; /* Blir din accentfärg när man hovrar */
+  transform: scale(1.1); /* Blir lite större när man håller över */
+}
 
 /* Overlay som täcker hela viewporten */
 .loading-overlay {
@@ -80,4 +131,238 @@
   to {
     transform: rotate(360deg);
   }
+}
+
+h4 {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  font-size: 1.2rem;
+  letter-spacing: 2px; /* Ger lite snyggt mellanrum mellan bokstäverna */
+  margin: 2rem 0 1.5rem 0;
+}
+
+/* Skapar linjerna före och efter texten */
+h4::before,
+h4::after {
+  content: "";
+  flex: 1; /* Säger åt linjerna att ta upp all ledig plats på sidorna */
+  border-bottom: 2px solid #38312D; /* Ändra till din specifika accentfärg från Figma om du inte använder denna rosa */
+}
+
+/* Ger lite luft mellan linjerna och själva texten */
+h4::before {
+  margin-right: 1rem;
+}
+
+h4::after {
+  margin-left: 1rem;
+}
+
+/* Behållaren behöver vara relative så vi kan placera labeln inuti */
+.input-group {
+  position: relative;
+  margin-bottom: 1.5rem;
+  width: 100%;
+}
+
+/* Själva input-fältet */
+.input-group input {
+  width: 100%;
+  padding: 1rem;
+  font-size: 1rem;
+  background: transparent;
+  border: 1px solid #38312D;
+  border-radius: 4px;
+  outline: none;
+  transition: border-color 0.2s;
+}
+
+/* Labeln i sitt startläge (mitt i rutan) */
+.input-group label {
+  position: absolute;
+  left: 1rem;
+  top: 1rem; /* Centrerar vertikalt i fältet */
+  color: #38312D;
+  pointer-events: none; /* Viktigt! Gör att man klickar *igenom* texten ner på inputfältet */
+  transition: all 0.2s ease;
+  padding: 0 0.4rem;
+  
+  /* Byt ut #222 mot den exakta bakgrundsfärgen du har i appen! */
+  background-color: #f9f9f3; /* Sätter en bakgrundsfärg som matchar appens bakgrund så att den "skär ut" texten från ramen */
+}
+
+/* * MAGIN Sker HÄR: 
+ * När input har fokus, ELLER när den har ett värde (placeholder döljs), 
+ * ELLER när fältet är godkänt (valid).
+ */
+.input-group input:focus ~ label,
+.input-group input:not(:placeholder-shown) ~ label,
+.input-group input:valid ~ label {
+  top: -0.6rem;         /* Flyttar upp etiketten på ramen */
+  left: 0.8rem;         /* Justerar i sidled */
+  font-size: 0.8rem;    /* Gör texten lite mindre */
+  color: #38312D;       /* Sätter din rosa accentfärg */
+}
+
+/* Ändra ramens färg när rutan är i fokus */
+.input-group input:focus {
+  border-color: #E24122;
+}
+
+.input-group input:focus ~ label {
+  color: #E24122;
+}
+
+/* Behållaren för raden */
+.input-row {
+  display: flex;
+  gap: 1rem; /* Detta är kommandot som skapar mellanrummet! (ca 16px) */
+  width: 100%;
+}
+
+/* Anpassa input-grupperna som ligger inuti raden */
+.input-row .input-group {
+  flex: 1; /* Tvingar dem att ta upp exakt 50% av den tillgängliga ytan var */
+  width: auto; /* Skriver över "width: 100%" från din grund-CSS så de inte tvingar sig utåt */
+  min-width: 0; /* Hindrar fälten från att pressas utanför skärmen på små mobiler */
+}
+
+/* Specialdesignad box för Totalsumman på Success-sidan */
+.total-box {
+  display: flex;
+  justify-content: space-between; /* Skjuter isär orden till vänster och höger */
+  align-items: center;
+  width: 100%;
+  padding: 1rem; /* Samma padding som dina input-fält för att den ska se lika stor ut */
+  margin-top: 1.5rem; /* Samma marginal som de andra fälten */
+  
+  /* Sätter ramen och texten till din accentfärg */
+  border: 1px solid #E24122; 
+  border-radius: 4px;
+  color: #E24122;
+  
+  background: transparent;
+  font-size: 1rem;
+}
+
+/* Gör "Total" till vänster extra fet */
+.total-box .total-label {
+  font-weight: 800; /* Extra fet stil */
+  text-transform: uppercase; /* Gör texten till versaler om det passar designen */
+  letter-spacing: 1px;
+}
+
+/* Priset till höger */
+.total-box .total-amount {
+  font-weight: normal;
+  font-size: 1.1rem; /* Gör summan aningen större för tydlighet */
+}
+
+/* Raden som håller skofältet och minusknappen */
+.shoe-row {
+  display: flex;
+  gap: 1rem; /* Mellanrum mellan fält och knapp */
+  align-items: center; /* Centrerar dem vertikalt */
+  width: 100%;
+}
+
+/* Hindrar input-gruppen från att skapa extra marginal i botten när den ligger i en rad */
+.shoe-row .input-group {
+  margin-bottom: 0;
+  flex: 1; /* Låter fältet ta upp all plats som blir över */
+}
+
+/* 1. Gemensam grundstyling (färg, form och beteende) */
+.add-btn,
+.remove-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%; /* Håller dem helt runda */
+  background-color: #E24122; 
+  color: #fff;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  flex-shrink: 0; 
+}
+
+/* 2. Specifika mått för MINUS-knappen (-) */
+.remove-btn {
+  width: 40px;
+  height: 40px;
+  font-size: 1.5rem; /* Anpassad textstorlek för 40px */
+}
+
+/* 3. Specifika mått för PLUS-knappen (+) */
+.add-btn {
+  width: 50px;
+  height: 50px;
+  font-size: 2rem; /* Lite större plustecken för 50px */
+  margin: 1rem auto 0 auto; /* Centrerar knappen i formuläret */
+}
+
+/* Hover-effekt (fyller knappen med färg) */
+.add-btn:hover,
+.remove-btn:hover:not(:disabled) {
+  background-color: #E24122;
+  color: #ffffff;
+}
+
+/* Klick-effekt */
+.add-btn:active,
+.remove-btn:active:not(:disabled) {
+  transform: scale(0.9);
+}
+
+/* Avstängd minusknapp (när det bara är 1 spelare) */
+.remove-btn:disabled {
+  border-color: #555555;
+  color: #555555;
+  cursor: not-allowed;
+  background-color: transparent;
+}
+
+/* Grundstyling för knappen */
+button {
+  width: 100%; /* Låter knappen fylla hela bredden, bra för mobiler! */
+  padding: 1rem;
+  background-color: #E24122; /* Strajks rosa accentfärg (justera koden om Figma säger annat) */
+  color: #ffffff;
+  font-size: 1.2rem;
+  font-weight: bold;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  border: none;
+  border-radius: 4px; /* Mjuka hörn (öka till t.ex. 30px om de är helt runda i Figma) */
+  cursor: pointer;
+  margin-top: 1.5rem;
+  margin-bottom: 2rem;
+  
+  /* Gör övergångarna mjuka för färg, skugga och rörelse */
+  transition: all 0.2s ease-in-out; 
+}
+
+/* 1. HOVER: När man håller musen över (om man kör på dator) */
+button:hover:not(:disabled) {
+  background-color: #E24122; /* En aning mörkare/djupare rosa */
+  transform: translateY(-2px); /* "Lyfter" knappen lite uppåt */
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3); /* Gör skuggan större */
+}
+
+/* 2. ACTIVE: Klick-effekten! När användaren faktiskt trycker på skärmen/musen */
+button:active:not(:disabled) {
+  transform: translateY(2px) scale(0.98); /* Trycker ner knappen och gör den liiiite mindre */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); /* Krymper skuggan så den ser "nedtryckt" ut */
+}
+
+/* 3. DISABLED: Medan bokningen laddar via API:et */
+button:disabled {
+  background-color: #444444; /* Grå bakgrund */
+  color: #888888; /* Mörkgrå text */
+  cursor: not-allowed; /* Visar förbudsskylt som muspekare */
+  box-shadow: none; /* Tar bort skuggan så den ser platt och inaktiv ut */
+  transform: none; /* Stänger av klickanimationen */
 }

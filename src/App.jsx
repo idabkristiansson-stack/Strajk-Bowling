@@ -11,18 +11,10 @@ function App() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [bookingDetails, setBookingDetails] = useState(null);
   const [currentView, setCurrentView] = useState('home');
-
-  <Routes>
-    <Route path="booking" element={<Booking onBookingSuccess={setBookingDetails} />} />
-    <Route path="success" element={<Success details={bookingDetails} />} />
-  </Routes>
-
-  
-  // <-- Global loading state
   const [isLoading, setIsLoading] = useState(false);
-  const [loadingText, setLoadingText] = useState("Laddar...");
+  const [loadingText, setLoadingText] = useState("Loading...");
 
-  const showLoading = (text = "Laddar...") => {
+  const showLoading = (text = "Loading...") => {
     setLoadingText(text);
     setIsLoading(true);
   };
@@ -64,7 +56,8 @@ function App() {
           <div className="home">
             <br />
             <br />
-            <img src="src/assets/logo.png" alt="STRAJK Bowling Logo" />
+            <img src="src/assets/logo.png" alt="STRAJK Bowling Logo" /> 
+            <br />
             <img src="src/assets/logo.text.png" alt="" />
           </div>
         )}
