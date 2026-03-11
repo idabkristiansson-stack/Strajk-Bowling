@@ -1,6 +1,5 @@
 import { useState, useEffect } from 'react';
 import { fetchApiKey, submitBooking } from '../assets/api.jsx';
-// Du behöver inte importera Link eller useNavigate eftersom du hanterar detta via App.jsx nu!
 
 function Booking({ onBookingSuccess, showLoading, hideLoading }) {
   const [date, setDate] = useState('');
@@ -11,7 +10,6 @@ function Booking({ onBookingSuccess, showLoading, hideLoading }) {
   const [error, setError] = useState('');
   const [isLoading, setIsLoading] = useState(false);
 
-  // 1. Uppdatera antal skofält dynamiskt när antal spelare ändras
   useEffect(() => {
     const newShoes = [...shoes];
     if (players > newShoes.length) {
@@ -24,19 +22,16 @@ function Booking({ onBookingSuccess, showLoading, hideLoading }) {
     setShoes(newShoes);
   }, [players]);
 
-  // 2. Hantera ändringar i skofälten
   const handleShoeChange = (index, value) => {
     const newShoes = [...shoes];
     newShoes[index] = value;
     setShoes(newShoes);
   };
 
-  // 3. Funktion för att lägga till en spelare (NU PÅ RÄTT STÄLLE!)
   const addPlayer = () => {
     setPlayers(prev => prev + 1);
   };
 
-  // 4. Funktion för att ta bort en specifik spelare (NU PÅ RÄTT STÄLLE!)
   const removePlayer = (indexToRemove) => {
     if (players <= 1) return; 
     const updatedShoes = shoes.filter((_, index) => index !== indexToRemove);
@@ -44,7 +39,6 @@ function Booking({ onBookingSuccess, showLoading, hideLoading }) {
     setPlayers(players - 1); 
   };
 
-  // 5. Hantera själva bokningen (Skicka formuläret)
   const handleStrike = async (e) => {
     e.preventDefault();
     setError('');
@@ -56,13 +50,12 @@ function Booking({ onBookingSuccess, showLoading, hideLoading }) {
       const payload = {
         when: when,
         lanes: parseInt(lanes),
-        people: parseInt(players), // <--- Ändrad från players till people enligt API specen
+        people: parseInt(players), 
         shoes: shoes.map(s => parseInt(s))
       };
 
       const apiKey = await fetchApiKey();
       
-      // Fixad submitBooking anrop (du skickade för många parametrar förut)
       const confirmationResponse = await submitBooking(payload, apiKey);
       
       const totalPrice = (parseInt(players) * 120) + (parseInt(lanes) * 100);
@@ -114,7 +107,7 @@ function Booking({ onBookingSuccess, showLoading, hideLoading }) {
           </div>
         </div>
 
-{/* SPELARE (Nu öppen för både skrivande och knappar!) */}
+        {/* SPELARE  */}
         <div className="input-group">
           <input 
             type="number" 
@@ -122,9 +115,7 @@ function Booking({ onBookingSuccess, showLoading, hideLoading }) {
             placeholder=" " 
             value={players} 
             onChange={(e) => {
-              // Gör om texten till en siffra
               const val = parseInt(e.target.value);
-              // Se till att det inte går att skriva 0 eller minus-siffror
               if (val > 0) {
                 setPlayers(val);
               }

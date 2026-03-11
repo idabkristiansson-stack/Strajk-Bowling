@@ -1,5 +1,4 @@
 export default function Success({ details }) {
-  // Om användaren navigerar hit utan en aktiv bokning
   if (!details) return <p className="error-message">No active booking was found.</p>;
 
   console.log('Booking details received in Success view:', details);
@@ -54,7 +53,7 @@ export default function Success({ details }) {
           <label>Booking number</label>
         </div>
         
- {/* TOTAL PRICE (Specialdesignad box istället för input) */}
+ {/* TOTAL PRICE */}
         <div className="total-box">
           <span className="total-label">Total</span>
           <span className="total-amount">{details.totalPrice} SEK</span>

@@ -3,7 +3,6 @@ export default function Menu({ navigate }) {
     <nav className="menu-overlay">
       <ul className="menu-links">
         <li>
-          {/* Anropar navigate-funktionen från App.jsx som byter vy och stänger menyn */}
           <button onClick={() => navigate('booking')}>Booking</button>
         </li>
         <li>

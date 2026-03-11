@@ -121,6 +121,8 @@
 }
 
 h4 {
+  font: Bebas Neue, regular;
+  color: #38312D;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -196,65 +198,55 @@ h4::after {
   width: 100%;
 }
 
-/* Anpassa input-grupperna som ligger inuti raden */
 .input-row .input-group {
-  flex: 1; /* Tvingar dem att ta upp exakt 50% av den tillgängliga ytan var */
-  width: auto; /* Skriver över "width: 100%" från din grund-CSS så de inte tvingar sig utåt */
-  min-width: 0; /* Hindrar fälten från att pressas utanför skärmen på små mobiler */
+  flex: 1;
+  width: auto; 
+  min-width: 0;
 }
 
-/* Specialdesignad box för Totalsumman på Success-sidan */
 .total-box {
   display: flex;
-  justify-content: space-between; /* Skjuter isär orden till vänster och höger */
+  justify-content: space-between; 
   align-items: center;
   width: 100%;
-  padding: 1rem; /* Samma padding som dina input-fält för att den ska se lika stor ut */
-  margin-top: 1.5rem; /* Samma marginal som de andra fälten */
-  
-  /* Sätter ramen och texten till din accentfärg */
+  padding: 1rem; 
+  margin-top: 1.5rem; 
   border: 1px solid #E24122; 
   border-radius: 4px;
   color: #E24122;
-  
   background: transparent;
   font-size: 1rem;
 }
 
-/* Gör "Total" till vänster extra fet */
 .total-box .total-label {
-  font-weight: 800; /* Extra fet stil */
-  text-transform: uppercase; /* Gör texten till versaler om det passar designen */
+  font-weight: 800; 
+  text-transform: uppercase; 
   letter-spacing: 1px;
 }
 
-/* Priset till höger */
 .total-box .total-amount {
   font-weight: normal;
-  font-size: 1.1rem; /* Gör summan aningen större för tydlighet */
+  font-size: 1.1rem; 
 }
 
-/* Raden som håller skofältet och minusknappen */
 .shoe-row {
   display: flex;
-  gap: 1rem; /* Mellanrum mellan fält och knapp */
-  align-items: center; /* Centrerar dem vertikalt */
+  gap: 1rem; 
+  align-items: center; 
   width: 100%;
 }
 
-/* Hindrar input-gruppen från att skapa extra marginal i botten när den ligger i en rad */
 .shoe-row .input-group {
   margin-bottom: 0;
-  flex: 1; /* Låter fältet ta upp all plats som blir över */
+  flex: 1;
 }
 
-/* 1. Gemensam grundstyling (färg, form och beteende) */
 .add-btn,
 .remove-btn {
   display: flex;
   align-items: center;
   justify-content: center;
-  border-radius: 50%; /* Håller dem helt runda */
+  border-radius: 50%; 
   background-color: #E24122; 
   color: #fff;
   font-weight: bold;
@@ -263,35 +255,30 @@ h4::after {
   flex-shrink: 0; 
 }
 
-/* 2. Specifika mått för MINUS-knappen (-) */
 .remove-btn {
   width: 40px;
   height: 40px;
-  font-size: 1.5rem; /* Anpassad textstorlek för 40px */
+  font-size: 1.5rem; 
 }
 
-/* 3. Specifika mått för PLUS-knappen (+) */
 .add-btn {
   width: 50px;
   height: 50px;
-  font-size: 2rem; /* Lite större plustecken för 50px */
-  margin: 1rem auto 0 auto; /* Centrerar knappen i formuläret */
+  font-size: 2rem;
+  margin: 1rem auto 0 auto; 
 }
 
-/* Hover-effekt (fyller knappen med färg) */
 .add-btn:hover,
 .remove-btn:hover:not(:disabled) {
   background-color: #E24122;
   color: #ffffff;
 }
 
-/* Klick-effekt */
 .add-btn:active,
 .remove-btn:active:not(:disabled) {
   transform: scale(0.9);
 }
 
-/* Avstängd minusknapp (när det bara är 1 spelare) */
 .remove-btn:disabled {
   border-color: #555555;
   color: #555555;
@@ -299,44 +286,38 @@ h4::after {
   background-color: transparent;
 }
 
-/* Grundstyling för knappen */
 button {
-  width: 100%; /* Låter knappen fylla hela bredden, bra för mobiler! */
+  width: 100%; 
   padding: 1rem;
-  background-color: #E24122; /* Strajks rosa accentfärg (justera koden om Figma säger annat) */
+  background-color: #E24122; 
   color: #ffffff;
   font-size: 1.2rem;
   font-weight: bold;
   letter-spacing: 2px;
   text-transform: uppercase;
   border: none;
-  border-radius: 4px; /* Mjuka hörn (öka till t.ex. 30px om de är helt runda i Figma) */
+  border-radius: 4px; 
   cursor: pointer;
   margin-top: 1.5rem;
   margin-bottom: 2rem;
-  
-  /* Gör övergångarna mjuka för färg, skugga och rörelse */
   transition: all 0.2s ease-in-out; 
 }
 
-/* 1. HOVER: När man håller musen över (om man kör på dator) */
 button:hover:not(:disabled) {
-  background-color: #E24122; /* En aning mörkare/djupare rosa */
-  transform: translateY(-2px); /* "Lyfter" knappen lite uppåt */
-  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3); /* Gör skuggan större */
+  background-color: #E24122;
+  transform: translateY(-2px); 
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3); 
 }
 
-/* 2. ACTIVE: Klick-effekten! När användaren faktiskt trycker på skärmen/musen */
 button:active:not(:disabled) {
-  transform: translateY(2px) scale(0.98); /* Trycker ner knappen och gör den liiiite mindre */
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); /* Krymper skuggan så den ser "nedtryckt" ut */
+  transform: translateY(2px) scale(0.98); 
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); 
 }
 
-/* 3. DISABLED: Medan bokningen laddar via API:et */
 button:disabled {
-  background-color: #444444; /* Grå bakgrund */
-  color: #888888; /* Mörkgrå text */
-  cursor: not-allowed; /* Visar förbudsskylt som muspekare */
-  box-shadow: none; /* Tar bort skuggan så den ser platt och inaktiv ut */
-  transform: none; /* Stänger av klickanimationen */
+  background-color: #444444; 
+  color: #888888; 
+  cursor: not-allowed;
+  box-shadow: none; 
+  transform: none; 
 }

@@ -29,7 +29,6 @@ function App() {
   return (
    <> 
  <>
-      {/* Global loading overlay */}
       <LoadingOverlay text={loadingText} visible={isLoading} />
       </>
 
@@ -41,17 +40,15 @@ function App() {
         />
       </header>
 
-      {/* Visar menyn (helskärms-overlay) om isMenuOpen är true */}
       {isMenuOpen && (
         <Menu 
           navigate={(view) => {
             setCurrentView(view);
-            setIsMenuOpen(false); // Stänger menyn när man gjort ett val
+            setIsMenuOpen(false);
           }} 
         />
       )}
 
-        {/* Startsida */}
         {currentView === 'home' && (
           <div className="home">
             <br />
@@ -62,11 +59,9 @@ function App() {
           </div>
         )}
 
-
-      {/* Resten av din app... */}
       {currentView === 'booking' && (
         <Booking onBookingSuccess={handleBookingSuccess} 
-        showLoading={showLoading}   // <-- Skickas till Booking
+        showLoading={showLoading}  
             hideLoading={hideLoading}
 />
       )}
